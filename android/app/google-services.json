@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471812222577",
+    "project_id": "notapp-ed0e2",
+    "storage_bucket": "notapp-ed0e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471812222577:android:4a472915f8cf95e5f0f5d0",
+        "android_client_info": {
+          "package_name": "com.example.kharcha_book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471812222577-uskk77hv4j346ebi4a7tgevq4mu23trv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnUTQ7OOJurPND2kRsUONUvgAE6dlvzDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471812222577-uskk77hv4j346ebi4a7tgevq4mu23trv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
