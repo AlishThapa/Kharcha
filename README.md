@@ -1,6 +1,6 @@
 # kharcha_book
 
-A new Flutter project.
+An app to keep you updated about your expenses from upto lastweek from the current day
 
 ## Getting Started
 

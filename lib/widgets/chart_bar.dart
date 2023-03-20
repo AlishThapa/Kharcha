@@ -5,10 +5,7 @@ class ChartBar extends StatelessWidget {
   final double spendingAmount;
   final double spendingPercentageOfTotal;
 
-  ChartBar(
-      {@required this.label,
-      @required this.spendingAmount,
-      @required this.spendingPercentageOfTotal});
+  const ChartBar({Key? key, required this.label, required this.spendingAmount, required this.spendingPercentageOfTotal}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +13,13 @@ class ChartBar extends StatelessWidget {
       children: [
         FittedBox(
           child: Text(
-            'Rs' + spendingAmount.toStringAsFixed(1),
+            'Rs ${spendingAmount.toStringAsFixed(1)}',
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 4,
         ),
-        Container(
+        SizedBox(
           height: 60,
           width: 10,
           child: Stack(
@@ -33,7 +30,7 @@ class ChartBar extends StatelessWidget {
                     color: Colors.grey,
                     width: 1,
                   ),
-                  color: Color.fromRGBO(220, 220, 220, 1),
+                  color: const Color.fromRGBO(220, 220, 220, 1),
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
@@ -49,7 +46,7 @@ class ChartBar extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 4,
         ),
         Text(label),

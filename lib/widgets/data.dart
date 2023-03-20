@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'chart_bar.dart';
 
 class Data extends StatelessWidget {
-  const Data({Key key, @required this.maxSpend, @required this.data})
-      : super(key: key);
+  const Data({Key? key, required this.maxSpend, required this.data}) : super(key: key);
 
-  final double maxSpend;
+  final num maxSpend;
   final data;
 
   @override
@@ -13,10 +12,9 @@ class Data extends StatelessWidget {
     return Flexible(
       fit: FlexFit.tight,
       child: ChartBar(
-        label:data['day'] ,
+        label: data['day'],
         spendingAmount: data['amount'],
-        spendingPercentageOfTotal:maxSpend == 0.0 ? 0.0 : (data['amount'] as double) / maxSpend,
-
+        spendingPercentageOfTotal: maxSpend == 0.0 ? 0.0 : (data['amount'] as double) / maxSpend,
       ),
     );
   }

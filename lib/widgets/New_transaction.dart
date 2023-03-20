@@ -1,10 +1,16 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kharcha_book/db/database_service.dart';
+
+import '../db/db_model/database_model.dart';
+import '../screens/homepage/home_page.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTransaction;
 
-  NewTransaction(this.addTransaction);
+  const NewTransaction(this.addTransaction, {Key? key}) : super(key: key);
 
   @override
   State<NewTransaction> createState() => _NewTransactionState();
@@ -13,23 +19,19 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
-  DateTime _date;
+  DateTime? _date;
 
   void _dataSubmission() {
     final isTitleEntered = _titleController.text;
-    final isAmountEntered = double.parse(
-        _amountController.text); //  it will convert string to double
+    final isAmountEntered = int.parse(_amountController.text); //  it will convert string to double
+    DatabaseService().create(
+      DatabaseModel(
+        title: _titleController.text,
+        amount: int.parse(_amountController.text),
 
-    if (isTitleEntered.isEmpty || isAmountEntered <= 0 || _date == null) {
-      return;
-    }
-    widget.addTransaction(
-      isTitleEntered,
-      isAmountEntered,
-      _date,
+      ),
     );
-
-    Navigator.of(context).pop();
+    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MyHomePage(),));
   }
 
   void _presentDatePicker() {
@@ -50,12 +52,12 @@ class _NewTransactionState extends State<NewTransaction> {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Title',
                 labelStyle: TextStyle(color: Colors.green),
               ),
@@ -63,18 +65,18 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => _dataSubmission(),
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Amount',
                 labelStyle: TextStyle(color: Colors.green),
               ),
               controller: _amountController,
-              keyboardType: TextInputType.numberWithOptions(
+              keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
                 signed: true,
               ),
               onSubmitted: (_) => _dataSubmission(),
             ),
-            Container(
+            SizedBox(
               height: 100,
               child: Column(
                 children: [
@@ -82,24 +84,19 @@ class _NewTransactionState extends State<NewTransaction> {
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          _date == null
-                              ? 'No Date Chosen!'
-                              : 'Chosen Date: ${DateFormat.yMd().format(_date)}',
+                          _date == null ? 'No Date Chosen!' : 'Chosen Date: ${DateFormat.yMd().format(_date!)}',
                         ),
                       ),
                       OutlinedButton(
                         onPressed: _presentDatePicker,
-                        child: Text('Choose Date'),
+                        child: const Text('Choose Date'),
                       ),
                     ],
                   ),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.greenAccent),
-                    onPressed: () {
-                      _dataSubmission();
-                    },
-                    child: Text('Add your kharcha'),
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.greenAccent),
+                    onPressed: () => _dataSubmission(),
+                    child: const Text('Add your kharcha'),
                   ),
                 ],
               ),
